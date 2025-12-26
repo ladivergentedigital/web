@@ -4,12 +4,11 @@
 
 # Reglas para que /admin funcione como SPA (Netlify CMS)
 [[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
+  from = "/.netlify/*"
+  to = "/.netlify/:splat"
   status = 200
 
-# (Opcional) rutas amigables
 [[redirects]]
-  from = "/blog/*"
-  to = "/blog/index.html"
+  from = "/*"
+  to = "/index.html"
   status = 200
