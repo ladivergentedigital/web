@@ -3,10 +3,6 @@
   publish = "dist"
 
 # Reglas para que /admin funcione como SPA (Netlify CMS)
-[[redirects]]
-  from = "/.netlify/*"
-  to = "/.netlify/:splat"
-  status = 200
 
 [[redirects]]
   from = "/*"
