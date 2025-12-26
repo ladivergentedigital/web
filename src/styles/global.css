@@ -1,0 +1,48 @@
+:root{
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --border: rgba(0,0,0,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  line-height:1.5;
+  color:#111;
+  background: #fafafa;
+}
+a{color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.nav{
+  display:flex;gap:16px;align-items:center;justify-content:space-between;
+  position:sticky;top:0;background:rgba(250,250,250,.85);backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav a{ text-decoration:none; opacity:.9}
+.brand{display:flex;gap:10px;align-items:center;font-weight:700}
+.pill{
+  padding:10px 14px;border:1px solid var(--border);border-radius:999px;
+  box-shadow:none;background:white;
+}
+.hero{
+  border:1px solid var(--border);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow);
+  background:white;
+  padding:28px;
+}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.card{
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  background:white;
+  box-shadow: var(--shadow);
+  padding:16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover{ transform: translateY(-2px); }
+.small{opacity:.75;font-size:.95rem}
+footer{opacity:.7;padding:30px 0}
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+}

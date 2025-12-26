@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import home from "../content/site/home.json";
+---
+<Base title={home.title}>
+  <section class="hero">
+    <h1 style="margin:0 0 6px 0;">{home.title}</h1>
+    <p class="small" style="margin:0 0 18px 0;">{home.subtitle}</p>
+    <div class="grid">
+      {home.highlights.map((h) => (
+        <article class="card">
+          <h3 style="margin:0 0 8px 0;">{h.title}</h3>
+          <p class="small" style="margin:0;">{h.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section style="margin-top:22px;">
+    <div class="grid">
+      <a class="card" href="/catalogo" style="text-decoration:none;">
+        <h3 style="margin:0 0 8px 0;">Explorar catálogo</h3>
+        <p class="small" style="margin:0;">eBooks en EPUB y PDF.</p>
+      </a>
+      <a class="card" href="/revista" style="text-decoration:none;">
+        <h3 style="margin:0 0 8px 0;">Revista mensual</h3>
+        <p class="small" style="margin:0;">Ediciones por mes, con descarga opcional.</p>
+      </a>
+      <a class="card" href="/blog" style="text-decoration:none;">
+        <h3 style="margin:0 0 8px 0;">Blog</h3>
+        <p class="small" style="margin:0;">Notas y novedades (editable desde /admin).</p>
+      </a>
+    </div>
+  </section>
+</Base>

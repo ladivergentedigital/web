@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Reglas para que /admin funcione como SPA (Netlify CMS)
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# (Opcional) rutas amigables
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog/index.html"
+  status = 200

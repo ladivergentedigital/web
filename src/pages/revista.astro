@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+
+const issues = Object.values(import.meta.glob("../content/revista/*.md", { eager: true }))
+  .map((m) => ({ ...m.frontmatter }))
+  .sort((a,b)=> (a.month||"").localeCompare(b.month||""));
+---
+<Base title="Revista | La Divergente">
+  <h1>Revista</h1>
+  <p class="small">Ediciones mensuales. La descarga es opcional (se define por edición).</p>
+
+  <div class="grid">
+    {issues.map(i => (
+      <article class="card">
+        <h3 style="margin:0 0 8px 0;">{i.title}</h3>
+        <div class="small">Mes: {i.month}</div>
+        <div class="small" style="margin-top:10px;">{(i.description || "").slice(0,120)}{(i.description||"").length>120 ? "…" : ""}</div>
+        <div style="margin-top:12px;">
+          {i.pdf ? (
+            <a class="pill" href={i.pdf} style="text-decoration:none;">Descargar PDF</a>
+          ) : (
+            <span class="pill" style="opacity:.6;">Sin PDF (demo)</span>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+</Base>

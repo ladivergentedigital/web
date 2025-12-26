@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import legal from "../content/site/legal.json";
+---
+<Base title="Legales | La Divergente">
+  <h1>Legales</h1>
+  <section class="card">
+    <h2>Términos y condiciones</h2>
+    <div class="small"><Fragment set:html={legal.terms} /></div>
+  </section>
+
+  <section class="card" style="margin-top:16px;">
+    <h2>Privacidad</h2>
+    <div class="small"><Fragment set:html={legal.privacy} /></div>
+  </section>
+</Base>

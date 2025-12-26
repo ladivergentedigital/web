@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const { slug } = Astro.params;
+
+const ebooks = Object.values(import.meta.glob("../../content/ebooks/*.json", { eager: true }))
+  .map((m) => m.default ?? m);
+
+function slugify(str){
+  return (str||"")
+    .toString()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,"-")
+    .replace(/(^-|-$)/g,"");
+}
+
+const book = ebooks.find(b => slugify(b.title) === slug);
+
+if (!book) {
+  throw new Error("eBook no encontrado. Revisá el título o el slug.");
+}
+
+// Reseñas: por ahora placeholder (en Etapa 3 lo conectamos a base de datos con moderación)
+const reviews = [
+  { name: "Lector/a", text: "Excelente lectura, muy recomendado." },
+];
+---
+<Base title={`${book.title} | La Divergente`}>
+  <article class="hero">
+    <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+      <img src={book.cover} alt={`Portada ${book.title}`} style="width:160px;height:220px;object-fit:cover;border-radius:16px;border:1px solid rgba(0,0,0,.1)" />
+      <div style="flex:1;min-width:240px;">
+        <h1 style="margin:0 0 6px 0;">{book.title}</h1>
+        <div class="small">por {book.author} · {book.pages} págs · {book.format}</div>
+        <div style="margin-top:10px;font-weight:800;font-size:1.2rem;">ARS {book.price}</div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="pill" disabled>Agregar al carrito (Etapa 2)</button>
+          <a class="pill" href="/catalogo" style="text-decoration:none;">Volver</a>
+        </div>
+
+        <div style="margin-top:18px;">
+          <h3>Descripción</h3>
+          <div class="small">
+            <Fragment set:html={book.description ?? ""} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section style="margin-top:18px;">
+    <h2>Reseñas</h2>
+    <p class="small">En Etapa 3 activamos reseñas reales con moderación (anti-spam).</p>
+    <div class="grid">
+      {reviews.map(r => (
+        <div class="card">
+          <div style="font-weight:800;">{r.name}</div>
+          <div class="small">{r.text}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

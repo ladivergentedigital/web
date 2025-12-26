@@ -1,0 +1,19 @@
+{
+  "title": "La Divergente",
+  "subtitle": "Editorial digital con corazón pedagógico. Libros, revista y experiencias de lectura accesibles.",
+  "primary": "#5B7FFF",
+  "highlights": [
+    {
+      "title": "eBooks",
+      "desc": "Catálogo curado en PDF y EPUB."
+    },
+    {
+      "title": "Revista mensual",
+      "desc": "Lecturas, entrevistas y recursos digitales."
+    },
+    {
+      "title": "Escuela e instituciones",
+      "desc": "Proyectos editoriales con impacto."
+    }
+  ]
+}

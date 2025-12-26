@@ -1,0 +1,9 @@
+{
+  "title": "Ejemplo de eBook",
+  "author": "Autor/a",
+  "pages": 120,
+  "price": 4500,
+  "format": "EPUB",
+  "cover": "/uploads/cover-ejemplo.png",
+  "description": "Descripción editable desde /admin."
+}

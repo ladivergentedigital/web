@@ -1,0 +1,26 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const posts = Object.values(import.meta.glob("../../content/blog/*.md", { eager: true }))
+  .map((m) => ({
+    ...m.frontmatter,
+    url: m.url ?? null,
+    body: m.compiledContent ? m.compiledContent() : null
+  }))
+  .sort((a,b)=> new Date(b.date) - new Date(a.date));
+---
+<Base title="Blog | La Divergente">
+  <h1>Blog</h1>
+  <p class="small">Publicá notas desde <strong>/admin</strong>.</p>
+  <div class="grid">
+    {posts.map(p => (
+      <article class="card">
+        <h3 style="margin:0 0 6px 0;">{p.title}</h3>
+        <div class="small">{new Date(p.date).toLocaleDateString("es-AR")}</div>
+        <div style="margin-top:10px;">
+          <a class="pill" href="#" style="pointer-events:none;opacity:.6;text-decoration:none;">Ver nota (se activa en Etapa 1.5)</a>
+        </div>
+      </article>
+    ))}
+  </div>
+</Base>

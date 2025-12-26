@@ -1,0 +1,48 @@
+---
+import "../styles/global.css";
+const { title = "La Divergente" } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+        <a class="brand" href="/">
+          <span>📚</span><span>La Divergente</span>
+        </a>
+        <nav style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+          <a class="pill" href="/catalogo">Catálogo</a>
+          <a class="pill" href="/revista">Revista</a>
+          <a class="pill" href="/blog">Blog</a>
+          <a class="pill" href="/legales">Legales</a>
+          <a class="pill" href="/admin">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="container">
+      <div>© {new Date().getFullYear()} La Divergente — Editorial 100% digital</div>
+    </footer>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
