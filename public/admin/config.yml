@@ -1,7 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: ladivergentedigital/web
   branch: main
-  repo: TU_USUARIO/TU_REPO
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
@@ -16,20 +16,13 @@ collections:
         fields:
           - { label: "Título", name: "title", widget: "string" }
           - { label: "Bajada", name: "subtitle", widget: "text" }
-          - { label: "Color primario", name: "primary", widget: "string", default: "#5B7FFF" }
-          - label: "Destacados"
-            name: "highlights"
-            widget: "list"
-            fields:
-              - { label: "Título", name: "title", widget: "string" }
-              - { label: "Descripción", name: "desc", widget: "text" }
 
       - file: "src/content/site/legal.json"
         label: "Legales"
         name: "legal"
         fields:
           - { label: "Términos y condiciones", name: "terms", widget: "markdown" }
-          - { label: "Privacidad", name: "privacy", widget: "markdown" }
+          - { label: "Política de privacidad", name: "privacy", widget: "markdown" }
 
   - name: "ebooks"
     label: "eBooks"
@@ -39,9 +32,9 @@ collections:
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Autor/a", name: "author", widget: "string" }
-      - { label: "Páginas", name: "pages", widget: "number", value_type: "int", min: 1 }
-      - { label: "Precio (ARS)", name: "price", widget: "number", value_type: "int", min: 0 }
-      - { label: "Formato", name: "format", widget: "select", options: ["EPUB", "PDF"] }
+      - { label: "Páginas", name: "pages", widget: "number" }
+      - { label: "Precio (ARS)", name: "price", widget: "number" }
+      - { label: "Formato", name: "format", widget: "select", options: ["PDF", "EPUB"] }
       - { label: "Portada", name: "cover", widget: "image" }
       - { label: "Descripción", name: "description", widget: "markdown" }
 
@@ -49,20 +42,17 @@ collections:
     label: "Blog"
     folder: "src/content/blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime" }
-      - { label: "Imagen", name: "image", widget: "image", required: false }
       - { label: "Contenido", name: "body", widget: "markdown" }
 
   - name: "revista"
     label: "Revista"
     folder: "src/content/revista"
     create: true
-    slug: "{{year}}-{{month}}"
     fields:
-      - { label: "Mes", name: "month", widget: "string", hint: "Ej: 2025-01" }
+      - { label: "Mes", name: "month", widget: "string", hint: "Ej: 2026-01" }
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Descripción", name: "description", widget: "markdown" }
-      - { label: "Archivo (PDF)", name: "pdf", widget: "file", required: false }
+      - { label: "PDF (opcional)", name: "pdf", widget: "file", required: false }
