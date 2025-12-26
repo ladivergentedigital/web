@@ -4,6 +4,7 @@ backend:
   branch: main
   auth_endpoint: https://api.netlify.com/auth?provider=github&site_id=7abb3c9b-b875-4d83-861f-034f44b13b7e
 
+
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
