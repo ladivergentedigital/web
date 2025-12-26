@@ -2,7 +2,8 @@ backend:
   name: github
   repo: ladivergentedigital/web
   branch: main
-  auth_endpoint: https://api.netlify.com/auth?provider=github&site_id=7abb3c9b-b875-4d83-861f-034f44b13b7e
+  client_id: Ov23liehOBehM1QuXag8
+  client_secret: d2bd9ec3b8af1bb075c9872972f364bb882908ae
 
 
 media_folder: "public/uploads"
