@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ingresar — La Divergente</title>
+
+    <!-- Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #fafafa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="netlify-identity-widget"></div>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (user) {
+            window.location.href = "/";
+          }
+        });
+        window.netlifyIdentity.init();
+      }
+    </script>
+  </body>
+</html>
