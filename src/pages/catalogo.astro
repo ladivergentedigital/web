@@ -1,9 +1,20 @@
 ---
+---
 import Base from "../layouts/Base.astro";
+
+function slugify(str){
+  return (str || "")
+    .toString()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,"-")
+    .replace(/(^-|-$)/g,"");
+}
 
 const ebooks = Object.values(import.meta.glob("../content/ebooks/*.json", { eager: true }))
   .map((m) => m.default ?? m)
   .sort((a,b)=> (a.title||"").localeCompare(b.title||""));
+
 ---
 <Base title="Catálogo | La Divergente">
   <h1>Catálogo</h1>
