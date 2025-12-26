@@ -11,14 +11,12 @@ function slugify(str) {
     .replace(/(^-|-$)/g, "");
 }
 
-// Cargamos todos los ebooks (JSON) para generar páginas estáticas
-const ebookModules = Object.values(
-  import.meta.glob("../../content/ebooks/*.json", { eager: true })
-).map((m) => (m.default ?? m));
-
-// Astro necesita esto para rutas dinámicas en modo "static"
 export async function getStaticPaths() {
-  return ebookModules.map((book) => ({
+  const books = Object.values(
+    import.meta.glob("../../content/ebooks/*.json", { eager: true })
+  ).map((m) => (m.default ?? m));
+
+  return books.map((book) => ({
     params: { slug: slugify(book.title) },
     props: { book },
   }));
@@ -26,10 +24,7 @@ export async function getStaticPaths() {
 
 const { book } = Astro.props;
 
-// Reseñas: placeholder (en Etapa 3 lo conectamos a base de datos con moderación)
-const reviews = [
-  { name: "Lector/a", text: "Excelente lectura, muy recomendado." },
-];
+const reviews = [{ name: "Lector/a", text: "Excelente lectura, muy recomendado." }];
 ---
 
 <Base title={`${book.title} | La Divergente`}>
@@ -62,14 +57,4 @@ const reviews = [
 
   <section style="margin-top:18px;">
     <h2>Reseñas</h2>
-    <p class="small">En Etapa 3 activamos reseñas reales con moderación (anti-spam).</p>
-    <div class="grid">
-      {reviews.map((r) => (
-        <div class="card">
-          <div style="font-weight:800;">{r.name}</div>
-          <div class="small">{r.text}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-</Base>
+    <p class="small">En Etapa 3
