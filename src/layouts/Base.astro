@@ -7,8 +7,28 @@ const { title = "La Divergente" } = Astro.props;
   <head>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.init();
+
+    const btn = document.getElementById("btn-login");
+    if (btn) {
+      btn.addEventListener("click", () => window.netlifyIdentity.open());
+    }
+
+    window.netlifyIdentity.on("login", () => {
+      window.netlifyIdentity.close();
+      window.location.reload();
+    });
+
+    window.netlifyIdentity.on("logout", () => window.location.reload());
+  }
+</script>
+
   <body>
     <header class="nav">
+<button id="btn-login" type="button">Ingresar</button>
+
       <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
         <a class="brand" href="/">
           <span>📚</span><span>La Divergente</span>
