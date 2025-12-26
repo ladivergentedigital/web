@@ -1,21 +1,23 @@
 ---
----
 import Base from "../layouts/Base.astro";
 
-function slugify(str){
+function slugify(str) {
   return (str || "")
     .toString()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g,"-")
-    .replace(/(^-|-$)/g,"");
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
-const ebooks = Object.values(import.meta.glob("../content/ebooks/*.json", { eager: true }))
-  .map((m) => m.default ?? m)
-  .sort((a,b)=> (a.title||"").localeCompare(b.title||""));
-
+const ebooks = Object.values(
+  import.meta.glob("../content/ebooks/*.json", { eager: true })
+)
+  .map((m) => (m.default ?? m))
+  .sort((a, b) => (a.title || "").localeCompare(b.title || ""));
 ---
+
 <Base title="Catálogo | La Divergente">
   <h1>Catálogo</h1>
   <p class="small">Este listado se edita desde <strong>/admin</strong>.</p>
@@ -24,7 +26,12 @@ const ebooks = Object.values(import.meta.glob("../content/ebooks/*.json", { eage
     {ebooks.map((b) => (
       <a class="card" href={`/ebook/${slugify(b.title)}`} style="text-decoration:none;">
         <div style="display:flex;gap:12px;align-items:flex-start;">
-          <img src={b.cover} alt={`Portada ${b.title}`} style="width:70px;height:95px;object-fit:cover;border-radius:12px;border:1px solid rgba(0,0,0,.1)" loading="lazy"/>
+          <img
+            src={b.cover}
+            alt={`Portada ${b.title}`}
+            style="width:70px;height:95px;object-fit:cover;border-radius:12px;border:1px solid rgba(0,0,0,.1)"
+            loading="lazy"
+          />
           <div>
             <h3 style="margin:0 0 6px 0;">{b.title}</h3>
             <div class="small">por {b.author} · {b.pages} págs · {b.format}</div>
@@ -35,14 +42,3 @@ const ebooks = Object.values(import.meta.glob("../content/ebooks/*.json", { eage
     ))}
   </div>
 </Base>
-
-<script>
-  function slugify(str){
-    return (str||"")
-      .toString()
-      .normalize("NFD").replace(/[̀-ͯ]/g,"")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g,"-")
-      .replace(/(^-|-$)/g,"");
-  }
-</script>
